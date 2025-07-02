@@ -1,14 +1,9 @@
-@import database.example.dto.BuildCoursePage
 @import database.example.util.NamedRoutes
+@param database.example.dto.BuildCoursePage page
 
-@param BuildCoursePage page
-
-@template.layout.page(content = @`
-    @if(page != null && page.getFlash() != null)
-            <div class="alert alert-${page.getFlashType()}" role="alert">
-                ${page.getFlash()}
-            </div>
-        @endif
+@template.layout.page(
+page = page,
+content = @`
     @if(page.getErrors() != null)
         <div class="mb-3">
             <ul>
@@ -25,14 +20,14 @@
             <div class="mb-3">
                 <label class="form-label">
                     Название
-                    <input type="text" class="form-control" required  name="name" value="${page.getName()}"/>
+                    <input type="text" class="form-control" required name="name" value="${page.getName()}"/>
                 </label>
             </div>
             <div class="mb-3">
-                    <label class="form-label">
+                <label class="form-label">
                     Описание
                     <input type="text" class="form-control" required name="description"
-                           value="${page.getDescription()}" />
+                           value="${page.getDescription()}"/>
                 </label>
             </div>
             <input type="submit" class="btn btn-primary" value="Создать"/>

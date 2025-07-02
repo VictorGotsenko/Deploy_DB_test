@@ -20,7 +20,7 @@ plugins {
 }
 
 application {
-    mainClass.set("database_example.App")
+    mainClass.set("database.example.App")
 }
 
 group = "example.org"
@@ -89,4 +89,11 @@ tasks.jacocoTestReport {
 
 tasks.test {
     useJUnitPlatform()
+    testLogging {
+        exceptionFormat = TestExceptionFormat.FULL
+        events = mutableSetOf(TestLogEvent.FAILED, TestLogEvent.PASSED, TestLogEvent.SKIPPED)
+        // showStackTraces = true
+        // showCauses = true
+        showStandardStreams = true
+    }
 }

@@ -13,7 +13,9 @@ import io.javalin.Javalin;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import io.javalin.rendering.template.JavalinJte;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class App {
 
     public static Javalin getApp() throws SQLException {
@@ -26,7 +28,7 @@ public class App {
         var sql = new BufferedReader(new InputStreamReader(url))
             .lines().collect(Collectors.joining("\n"));
 
-//        log.info(sql);
+        log.info(sql);
         try (var connection = dataSource.getConnection();
                 var statement = connection.createStatement()) {
             statement.execute(sql);
